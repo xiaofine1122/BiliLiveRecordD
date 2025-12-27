@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>B站直播回放下载器</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <!-- 页面头部 -->
+    <header class="app-header">
+      <h1>B站直播回放下载器</h1>
+      <button id="helpBtn" class="btn btn-secondary" data-toggle="modal" data-target="#helpModal">帮助</button>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="app-main">
+      <!-- 左侧区域：UID管理和回放列表 -->
+      <div class="left-panel">
+        <!-- UID查询 -->
+        <div class="card mb-3">
+          <div class="card-header">主播UID</div>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" id="uidInput" class="form-control" placeholder="输入主播的UID">
+              <div class="input-group-append">
+                <button id="queryUidBtn" class="btn btn-primary">查询</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 回放列表 -->
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">直播回放列表</div>
+              <div class="col-auto">
+                <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="搜索标题">
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <table id="vodTable" class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>标题</th>
+                  <th>开始时间</th>
+                  <th>时长</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="vodTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 右侧区域：下载队列和设置 -->
+      <div class="right-panel">
+        <!-- 下载队列 -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">下载队列</div>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <table id="downloadTable" class="table table-striped mb-0">
+              <thead>
+                <tr>
+                  <th>标题</th>
+                  <th>进度</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="downloadTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        
+        <!-- 当前下载任务详情 -->
+        <div class="card mb-3">
+          <div class="card-header">当前任务详情</div>
+          <div class="card-body">
+            <div id="taskDetails" class="task-details">
+              <p>请选择一个下载任务查看详情</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cookie设置 -->
+        <div class="card mb-3">
+          <div class="card-header">Cookie设置</div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="cookieInput">B站Cookie (SESSDATA)</label>
+              <input type="text" id="cookieInput" class="form-control" placeholder="请输入SESSDATA值">
+              <small class="form-text text-muted">可从浏览器开发者工具中获取，输入后自动加载</small>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 应用设置 -->
+        <div class="card mb-3">
+          <div class="card-header">应用设置</div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="savePath">下载保存路径</label>
+              <div class="input-group">
+                <input type="text" id="savePath" class="form-control">
+                <div class="input-group-append">
+                  <button id="browsePathBtn" class="btn btn-secondary">浏览</button>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        
+        <!-- 日志视图 -->
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">日志</div>
+              <div class="col-auto">
+                <button id="clearLogBtn" class="btn btn-secondary btn-sm">清空</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <textarea id="logTextarea" class="form-control" rows="10" readonly></textarea>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <!-- 设置对话框 -->
+  <div id="settingsModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">应用设置</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- 设置内容 -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+          <button type="button" class="btn btn-primary">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 帮助对话框 -->
+  <div id="helpModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="helpModalLabel">使用说明</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="help-content">
+            <h6>1. 使用范围</h6>
+            <p>一些主播可以打开直播间的直播回放功能，再pc端的直播间右上角会有回放或者剪辑的按钮如图</p>
+            <div class="text-center my-3">
+              <img src="images/1.png" class="img-fluid help-image" alt="步骤1：查询直播回放" style="max-width: 600px; height: auto;">
+              <p class="text-muted mt-1">图1</p>
+            </div>
+            
+            <h6>2. 下载前准备</h6>
+            <p>需要使用的到用户的Cookie，填入SESSDATA的字段就可以</p>
+            
+            <h6>3. 操作顺序</h6>
+            <p>填入cooike，输入主播的uid(不是直播间id),点击查询，列表里会显示(显示没剪辑权限就是主播没开放这个功能，或者cookie填错了)，点击下载就可以在队列里看到了</p>
+            <div class="text-center my-3">
+              <img src="images/2.png" class="img-fluid help-image" alt="步骤3：查看下载进度" style="max-width: 600px; height: auto;">
+              <p class="text-muted mt-1">图2</p>
+            </div>
+            
+            <h6>4. 其他</h6>
+            <p>只是实现了简单的下载功能，右下角日志可以看到一些操作信息</p>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 在渲染进程中直接require jQuery
+    const jquery = require('jquery');
+    window.jQuery = window.$ = jquery;
+    console.log('jQuery loaded successfully');
+  </script>
+  
+  <!-- 加载Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- 加载应用脚本 -->
+  <script src="./main.js"></script>
+</body>
+</html>

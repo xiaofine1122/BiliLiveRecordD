@@ -1,0 +1,257 @@
+/* 全局样式 */
+body {
+  font-family: 'Microsoft YaHei', Arial, sans-serif;
+  margin: 0;
+  padding: 5px;
+  background-color: #f5f5f5;
+}
+
+/* 应用头部 */
+.app-header {
+  background-color: #00a1d6;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-text {
+  font-size: 14px;
+  padding: 4px 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* 主内容区 */
+.app-main {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.left-panel {
+  flex: 1;
+  min-width: 380px;
+}
+
+.right-panel {
+  flex: 1;
+  min-width: 380px;
+}
+
+/* UID管理 */
+.uid-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.uid-tag {
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
+  color: #1890ff;
+  padding: 4px 12px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.uid-tag:hover {
+  background-color: #91d5ff;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.uid-tag .close-btn {
+  margin-left: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1;
+  color: #ff4d4f;
+}
+
+.uid-tag .close-btn:hover {
+  color: #ff7875;
+}
+
+/* 表格样式 */
+.table {
+  margin-bottom: 0;
+}
+
+.table th, .table td {
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+/* 进度条 */
+.progress {
+  height: 15px;
+  margin-bottom: 0;
+}
+
+.progress-bar {
+  transition: width 0.3s ease;
+}
+
+/* 任务详情 */
+.task-details {
+  min-height: 100px;
+  background-color: #fafafa;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #e8e8e8;
+}
+
+/* 日志样式 */
+.log-container {
+  position: relative;
+}
+
+#logTextarea {
+  background-color: #282c34;
+  color: #abb2bf;
+  border: none;
+  resize: none;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  height: 200px;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .col-lg-6 {
+    margin-bottom: 20px;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 5px;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .header h1 {
+    font-size: 20px;
+  }
+}
+
+/* 按钮样式调整 */
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+/* 卡片样式增强 */
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0px;
+}
+
+.card-header {
+  font-weight: bold;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 6px 8px;
+}
+
+.card-body {
+  padding: 6px;
+}
+
+/* 表单样式调整 */
+.form-control {
+  font-size: 13px;
+  padding: 0.25rem 0.5rem;
+  height: calc(1.5em + 0.5rem + 2px);
+}
+
+/* 加载状态 */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* 提示信息 */
+.alert {
+  margin-bottom: 10px;
+  padding: 8px 15px;
+  font-size: 14px;
+}
+
+/* 悬浮效果 */
+.btn:hover {
+  transition: all 0.3s ease;
+}
+
+/* 状态标签样式 */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.4em 0.6em;
+  font-weight: 500;
+}
+
+/* 帮助模态框样式 */
+.help-content {
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.help-content h6 {
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.help-content p {
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.help-image {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-width: 100%;
+  height: auto;
+}
+
+/* 确保页面头部的帮助按钮位置正确 */
+.app-header {
+  justify-content: space-between;
+  padding: 5px 15px;
+}
