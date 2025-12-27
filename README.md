@@ -1,7 +1,10 @@
-以下内容为AI总结
 # B站直播回放下载器
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Project-blue.svg)](https://github.com/xiaofine1122/BiliLiveRecordD)
+
 B站直播回放下载器是一款基于Electron开发的Windows客户端工具，用于下载B站（哔哩哔哩）直播回放视频。
+
+项目地址：[https://github.com/xiaofine1122/BiliLiveRecordD](https://github.com/xiaofine1122/BiliLiveRecordD)
 
 ## 功能特性
 
