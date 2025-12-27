@@ -47,8 +47,8 @@ __pycache__/
 *.deb
 *.rpm
 
-# FFmpeg (optional, if you don't want to include it in git)
-# ffmpeg/
+# FFmpeg (keep directory, ignore executables)
+ffmpeg/*.exe
 
 # Other
 *.md.bak

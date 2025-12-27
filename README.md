@@ -126,7 +126,11 @@ Cookie用于B站API认证，主要需要`SESSDATA`字段。您可以通过以下
 
 ### FFmpeg配置
 
-程序已内置FFmpeg工具，用于视频文件处理。如果需要使用自定义的FFmpeg，可以替换`ffmpeg/`目录下的`ffmpeg.exe`和`ffprobe.exe`文件。
+程序需要FFmpeg工具用于视频文件处理。请将`ffmpeg.exe`、`ffplay.exe`和`ffprobe.exe`文件放置在`ffmpeg/`目录下。
+
+**获取FFmpeg**：
+1. 访问[FFmpeg官网](https://ffmpeg.org/)下载Windows版本
+2. 解压后将上述三个exe文件复制到项目的`ffmpeg/`目录中
 
 ## 常见问题
 
